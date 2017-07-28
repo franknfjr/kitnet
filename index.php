@@ -17,11 +17,11 @@ if(isset($_SESSION['valid'])) {
 
     Bem vindo <?php echo $_SESSION['nome'] ?> ! <a href='logout.php'>Logout</a><br/>
     <br/>
-    <a href='view.php'>View and Add Products</a>
+    <a href='view.php'>Visualizar e adicionar Imóveis</a>
     <br/><br/>
     <?php
 } else {
-    echo "You must be logged in to view this page.<br/><br/>";
+    echo "Você deve estar logado para ver esta página.<br/><br/>";
     echo "<a href='login.php'>Login</a> | <a href='register.php'>Register</a>";
 }
 ?>
