@@ -1,0 +1,23 @@
+/* CSS Document */
+
+body {
+	margin: auto;
+	height: 500px;
+	padding: 20px;
+}
+
+#header {
+	width: 700px;
+	color: lightseagreen;
+	font-size: 32px;
+	padding: 10px 10px 10px 0px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid bisque;
+}
+
+#footer {
+	border-top: 1px solid bisque;
+	margin-top: 20px;
+	color: grey;
+	padding-top: 10px;	
+}
