@@ -120,11 +120,17 @@ while($res = mysqli_fetch_array($result)) {
             </tr>
             <tr>
                 <td>Tipo</td>
-                <td><input type="text" name="tipo" value="<?php echo $tipo;?>"></td>
+                <td><select name="tipo">
+                        <option value="<?php echo $tipo;?>"></option>
+                        <option value="Kitnet">Kitnet</option>
+                        <option value="Casa">Casa</option>
+                        <option value="Apto">Apto</option>
+                        <option value="Chale">Chale</option>
+                    </select></td>
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><input type="submit" name="update" value="Update"></td>
+         <td><input type="submit" name="update" value="Update"></td>
             </tr>
         </table>
     </form>
