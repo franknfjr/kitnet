@@ -1,19 +1,32 @@
+<?php session_start(); ?>
+
 <?php
-$address = 'universidade federal rural da amazonia';
-$prepAddr = str_replace(' ','+',$address);
-$url = "http://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false";
-$response = file_get_contents($url);
-$response = json_decode($response, true);
+if(!isset($_SESSION['valid'])) {
+    header('Location: login.php');
+}
+?>
 
+<?php
+include_once("connection.php");
 
-$lat = $response['results'][0]['geometry']['location']['lat'];
-$long = $response['results'][0]['geometry']['location']['lng'];
+$result = mysqli_query($mysqli, "SELECT endereco FROM imovel WHERE proprietario_id='1' and id='4'");
 
-echo "latitude: " . $lat . " longitude: " . $long;
+while($res = mysqli_fetch_array($result)) {
+    echo $endereco = $res['endereco']."<br>";
+    $address = str_replace(' ','+',$endereco);
+    $url = "http://maps.google.com/maps/api/geocode/json?address='.$address.'&sensor=false";
+    $response = file_get_contents($url);
+    $response = json_decode($response, true);
+
+    $lat = $response['results'][0]['geometry']['location']['lat'];
+    $long = $response['results'][0]['geometry']['location']['lng'];
+    echo "latitude: " . $lat . " longitude: " . $long;
+}
 ?>
 <!DOCTYPE html>
 <html>
   <head>
+      <title>Maps</title>
     <style>
        #map {
         height: 400px;
@@ -41,6 +54,5 @@ echo "latitude: " . $lat . " longitude: " . $long;
     <h3>My Google Maps Demo</h3>
     <div id="map"></div><br>
 	   <?php echo "<a href='view.php'>Voltar</a>" ?>
-
   </body>
 </html>
