@@ -46,7 +46,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM imovel WHERE proprietario_id=".$_
 			while($res = mysqli_fetch_array($result)) {
 				echo "<tr>";
 				echo "<td>".$res['tipo']."</td> ";
-				echo "<td>".$res['endereco']."<a href=\"maps.php?idimovel=$res[id]\"> Maps</a></td>";
+				echo "<td>".$res['endereco']."<a href=\"maps.php?id=$res[id]\"> Maps</a></td>";
 				echo "<td>".$res['bairro']."</td>";
 				echo "<td>".$res['cep']."</td>";
 				echo "<td>".$res['valor_aluguel']."</td>";
