@@ -9,10 +9,10 @@ if(!isset($_SESSION['valid'])) {
 <?php
 include_once("connection.php");
 
-$result = mysqli_query($mysqli, "select p.id, p.nome as proprietario, i.endereco from proprietario p, imovel i where p.id = i.proprietario_id and p.id =".$_SESSION['id']."");
+$result = mysqli_query($mysqli, "SELECT endereco FROM imovel  WHERE id =".$_GET['id']."");
 
 while($res = mysqli_fetch_array($result)) {
-    echo $endereco = $res['endereco'][0]."<br>";
+    echo $endereco = $res['endereco']."<br>";
     $address = str_replace(' ','+',$endereco);
     $url = "http://maps.google.com/maps/api/geocode/json?address='.$address.'&sensor=false";
     $response = file_get_contents($url);
@@ -56,3 +56,4 @@ while($res = mysqli_fetch_array($result)) {
 	   <?php echo "<a href='view.php'>Voltar</a>" ?>
   </body>
 </html>
+
