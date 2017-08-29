@@ -21,11 +21,11 @@ $result = mysqli_query($mysqli, "SELECT * FROM proprietario WHERE id=".$_SESSION
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>View</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtRgHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   </head>
   <body>
     <h1>KitNet!</h1>
-		<a href="index.php">Home</a> | <a href="add.html">Add Imovel</a> | <a href="logout.php">Logout</a>
+		<a href="index.php">Home</a> | <a href="logout.php">Logout</a>
 		<br/><br/>
 <table class="table">
   <thead class="thead-inverse">
@@ -33,11 +33,11 @@ $result = mysqli_query($mysqli, "SELECT * FROM proprietario WHERE id=".$_SESSION
       <th>Nome</th>
       <th>Endereço</th>
       <th>Telefone</th>
-      <th>Rg</th>
+      <th>RG</th>
       <th>CPF</th>
-      <th>email</th>
-      <th>username</th>
-      <th>senha</th>
+      <th>Email</th>
+      <th>Username</th>
+      <th>Senha</th>
       <th>Update</th>
     </tr>
   </thead>
@@ -53,7 +53,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM proprietario WHERE id=".$_SESSION
 				echo "<td>".$res['email']."</td>";
 				echo "<td>".$res['username']."</td>";
 				echo "<td>".$res['senha']."</td>";
- 				echo "<td><a class='btn btn-primary' href=\"edituser.php\">Edit</a> | <a class='btn btn-danger' href=\"delete.php\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+ 				echo "<td><a class='btn btn-primary' href=\"editProprietario.php?id=$res[id]\">Edit</a> | <a class='btn btn-danger' href=\"deleteProprietario.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete your account?')\">Delete</a></td>";
 			}
 			?>
 		</tr>
