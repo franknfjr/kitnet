@@ -11,8 +11,7 @@ if(!isset($_SESSION['valid'])) {
 include_once("connection.php");
 
 if(isset($_POST['update'])) {
-
-
+    $id = $_POST['id'];
     $nome = $_POST['nome'];
     $endereco = $_POST['endereco'];
     $telefone = $_POST['telefone'];
@@ -35,34 +34,33 @@ if(isset($_POST['update'])) {
             echo "<font color='red'>telefone field is empty.</font><br/>";
         }
         if(empty($rg)) {
-            echo "<font color='red'>Valor field is empty.</font><br/>";
+            echo "<font color='red'>Rg field is empty.</font><br/>";
         }
         if(empty($cpf)) {
-            echo "<font color='red'>cpf field is empty.</font><br/>";
+            echo "<font color='red'>Cpf field is empty.</font><br/>";
         }
         if(empty($email)) {
-            echo "<font color='red'>Qtd quartos field is empty.</font><br/>";
+            echo "<font color='red'>Email field is empty.</font><br/>";
         }
         if(empty($username)) {
-            echo "<font color='red'>Area field is empty.</font><br/>";
+            echo "<font color='red'>Username is empty.</font><br/>";
         }
         if(empty($senha)) {
-            echo "<font color='red'>senha field is empty.</font><br/>";
+            echo "<font color='red'>Senha field is empty.</font><br/>";
         }
     }else {
 		//updating the table
-		$result = mysqli_query($mysqli, "UPDATE proprietario SET nome='$nome', endereco='$endereco', telefone='$telefone', rg='$rg', cpf='$cpf', email='$email', username='$username', senha='$senha'");
+		$result = mysqli_query($mysqli, "UPDATE proprietario SET nome='$nome', endereco='$endereco', telefone='$telefone', rg='$rg', cpf='$cpf', email='$email', username='$username', senha=md5('$senha') WHERE id=$id");
 
 		//redirectig to the display page. In our case, it is view.php
-		header("Location: view.php");
+		header("Location: viewProprietario.php");
 	}
 }
 ?>
 <?php
-//getting id from url
-
+$id = $_GET['id'];
 //selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM proprietario");
+$result = mysqli_query($mysqli, "SELECT * FROM proprietario WHERE id=$id");
 
 while($res = mysqli_fetch_array($result)) {
     $nome = $res['nome'];
@@ -78,15 +76,15 @@ while($res = mysqli_fetch_array($result)) {
 ?>
 <html>
 <head>
-	<title>Edit proprietario</title>
+	<title>Edit User</title>
 </head>
 
 <body>
-	<a href="index.php">Home</a> | <a href="view.php">View proprietario</a> | <a href="logout.php">Logout</a>
+	<a href="index.php">Home</a> | <a href="view.php">View Imovel</a> | <a href="logout.php">Logout</a>
 	<br/><br/>
 
 
-    <form name="form1"  method="post" action="edituser.php">
+    <form name="form1"  method="post" action="editProprietario.php">
         <table width="25%" border="0">
             <tr>
                 <td>nome</td>
@@ -101,7 +99,7 @@ while($res = mysqli_fetch_array($result)) {
                 <td><input type="text" name="telefone" value="<?php echo $telefone;?>"></td>
             </tr>
             <tr>
-                <td>Valor</td>
+                <td>rg</td>
                 <td><input type="text" name="rg" value="<?php echo $rg;?>"></td>
             </tr>
             <tr>
@@ -109,18 +107,19 @@ while($res = mysqli_fetch_array($result)) {
                 <td><input type="text" name="cpf" value="<?php echo $cpf;?>"></td>
             </tr>
             <tr>
-                <td>Qdt Quartos</td>
+                <td>email</td>
                 <td><input type="text" name="email" value="<?php echo $email;?>"></td>
             </tr>
             <tr>
-                <td>Area total</td>
+                <td>username</td>
                 <td><input type="text" name="username" value="<?php echo $username;?>"></td>
             </tr>
             <tr>
-                <td>senha</td><td><input type="text" name="senha" value="<?php echo $senha;?>"></td>
+                <td>senha</td>
+                  <td><input type="text" name="senha" value="<?php echo $senha;?>"></td>
             </tr>
-            <tr>
-         <td><input type="submit" name="update" value="Update"></td>
+            <tr><td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
+		 <td><input type="submit" name="update" value="Update"></td>
             </tr>
         </table>
     </form>
