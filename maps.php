@@ -53,7 +53,6 @@ while($res = mysqli_fetch_array($result)) {
   <body>
     <h3>My Google Maps Demo</h3>
     <div id="map"></div><br>
-	   <?php echo "<a href='view.php'>Voltar</a>" ?>
+	   <?php echo "<a href='viewImovel.php'>Voltar</a>" ?>
   </body>
 </html>
-

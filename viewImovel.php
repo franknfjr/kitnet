@@ -53,7 +53,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM imovel WHERE proprietario_id=".$_
 				echo "<td>".$res['descricao']."</td>";
 				echo "<td>".$res['qtd_quartos']."</td>";
 				echo "<td>".$res['area_total']."</td>";
- 				echo "<td><a class='btn btn-primary' href=\"edit.php?id=$res[id]\">Edit</a> | <a class='btn btn-danger' href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+ 				echo "<td><a class='btn btn-primary' href=\"editImovel.php?id=$res[id]\">Edit</a> | <a class='btn btn-danger' href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
 			}
 			?>
 		</tr>

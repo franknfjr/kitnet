@@ -22,7 +22,7 @@ if(isset($_POST['update'])) {
     $qtd_quartos = $_POST['qtd_quartos'];
     $area_total = $_POST['area_total'];
     $tipo = $_POST['tipo'];
-	
+
 	// checking empty fields
     if(empty($endereco) || empty($bairro) || empty($cep) || empty($valor_aluguel) || empty($desc) || empty($qtd_quartos) || empty($area_total) || empty($tipo)){
 
@@ -53,9 +53,9 @@ if(isset($_POST['update'])) {
     }else {
 		//updating the table
 		$result = mysqli_query($mysqli, "UPDATE imovel SET endereco='$endereco', bairro='$bairro', cep='$cep', valor_aluguel='$valor_aluguel', descricao='$desc', qtd_quartos='$qtd_quartos', area_total='$area_total', tipo='$tipo' WHERE id=$id");
-		
-		//redirectig to the display page. In our case, it is view.php
-		header("Location: view.php");
+
+		//redirectig to the display page. In our case, it is viewImovel.php
+		header("Location: viewImovel.php");
 	}
 }
 ?>
@@ -79,16 +79,16 @@ while($res = mysqli_fetch_array($result)) {
 }
 ?>
 <html>
-<head>	
+<head>
 	<title>Edit Imovel</title>
 </head>
 
 <body>
-	<a href="index.php">Home</a> | <a href="view.php">View Imovel</a> | <a href="logout.php">Logout</a>
+	<a href="index.php">Home</a> | <a href="viewImovel.php">View Imovel</a> | <a href="logout.php">Logout</a>
 	<br/><br/>
 
 
-    <form name="form1"  method="post" action="edit.php">
+    <form name="form1"  method="post" action="editImovel.php">
         <table width="25%" border="0">
             <tr>
                 <td>Endereco</td>

@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`imovel` (
   `endereco` VARCHAR(150) NULL,
   `bairro` VARCHAR(45) NULL,
   `cep` VARCHAR(45) NULL,
-  `valor_aluguel` DECIMAL(12,1) NULL,
+  `valor_aluguel` DECIMAL(12,2) NULL,
   `descricao` VARCHAR(200) NULL,
   `qtd_quartos` INT NULL,
   `area_total` INT NULL,

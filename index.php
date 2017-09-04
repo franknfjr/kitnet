@@ -17,7 +17,7 @@ if(isset($_SESSION['valid'])) {
 
     Bem vindo <?php echo $_SESSION['nome'] ?> ! <a href='logout.php'>Logout</a><br/>
     <br/>
-    <a href='view.php'>Visualizar e adicionar Imóveis</a>
+    <a href='viewImovel.php'>Visualizar e adicionar Imóveis</a>
     <br/><br/>
     <?php
 } else {
