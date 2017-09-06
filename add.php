@@ -54,7 +54,7 @@
                  }
 
          		//link to the previous page
-         		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+         		echo "<br/><a href='javascript:self.history.back();'>Voltar</a>";
          	} else {
          		// if all the fields are filled (not empty)
 

@@ -12,7 +12,9 @@ include_once("connection.php");
 $result = mysqli_query($mysqli, "SELECT endereco FROM imovel  WHERE id =".$_GET['id']."");
 
 while($res = mysqli_fetch_array($result)) {
+    echo "<h1>";
     echo $endereco = $res['endereco']."<br>";
+    echo "</h1>";
     $address = str_replace(' ','+',$endereco);
     $url = "http://maps.google.com/maps/api/geocode/json?address='.$address.'&sensor=false";
     $response = file_get_contents($url);
@@ -20,13 +22,17 @@ while($res = mysqli_fetch_array($result)) {
 
     $lat = $response['results'][0]['geometry']['location']['lat'];
     $long = $response['results'][0]['geometry']['location']['lng'];
+    echo "<h6>";
     echo "latitude: " . $lat . " longitude: " . $long;
+    echo "</h6>";
 }
 ?>
 <!DOCTYPE html>
 <html>
   <head>
       <title>Maps</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
     <style>
        #map {
         height: 400px;
@@ -51,8 +57,8 @@ while($res = mysqli_fetch_array($result)) {
     </script>
   </head>
   <body>
-    <h3>My Google Maps Demo</h3>
+    <h4>My Google Maps Demo</h4>
     <div id="map"></div><br>
-	   <?php echo "<a href='viewImovel.php'>Voltar</a>" ?>
+	   <?php echo "<button type='button' class='btn btn-dark'><a href='viewImovel.php'>Voltar</button></a>" ?>
   </body>
 </html>

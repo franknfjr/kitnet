@@ -12,8 +12,9 @@
    $id = $_GET['id'];
 
    //excluindo a linha da tabela
-   $result=mysqli_query($mysqli, "DELETE FROM imovel WHERE id=$id");
+   $result=mysqli_query($mysqli, "DELETE FROM proprietario WHERE id=$id");
+   $result=mysqli_query($mysqli, "DELETE FROM imovel WHERE proprietario_id=$id");
 
    //redirecionando para a página de exibição (view.php no nosso caso
-   header("Location:viewImovel.php");
+   header("Location:logout.php");
 ?>
