@@ -28,7 +28,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM proprietario WHERE id=".$_SESSION
       <link href="narrow-jumbotron.css" rel="stylesheet">
    </head>
    <body>
-		 <div class="container">
+		 <div class="container-fluid">
 	          <div class="header clearfix">
 	             <nav>
 	                <ul class="nav nav-pills float-right" role="tablist">
@@ -48,7 +48,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM proprietario WHERE id=".$_SESSION
 	             </nav>
 	             <h3 class="text-muted">Kitnet</h3>
 	          </div>
-<table class="table">
+<table class="table table-hover table-sm table-responsive overflow-y: hidden">
   <thead class="thead-inverse">
     <tr>
       <th>Nome</th>

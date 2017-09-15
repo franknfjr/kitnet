@@ -14,7 +14,7 @@
       <link href="narrow-jumbotron.css" rel="stylesheet">
    </head>
    <body>
-     <div class="container">
+     <div class="container-fluid">
         <div class="header clearfix">
            <nav>
               <ul class="nav nav-pills float-right" role="tablist">
