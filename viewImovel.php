@@ -101,14 +101,17 @@ $total = mysqli_num_rows($res);
  				echo "<td><a class='btn btn-primary' href=\"editImovel.php?id=$res[id]\">Edit</a> | <a class='btn btn-danger' href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
 			}
 
-			//exibe a paginação
-    	for($i = 1; $i < $numPaginas+1; $i++) {
-        echo "<a href='viewImovel.php?pagina=$i'>".$i."</a> ";
-    }
+
 			?>
 		</tr>
   </tbody>
 </table>
+<?php
+//exibe a paginação
+for($i = 1; $i < $numPaginas+1; $i++) {
+  echo "<a href='viewImovel.php?pagina=$i'>".$i."</a> ";
+}
+?>
 </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
