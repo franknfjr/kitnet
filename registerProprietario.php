@@ -17,12 +17,18 @@
           $email = $_POST['email'];
           $user = $_POST['username'];
           $pass = $_POST['password'];
+          $senhaConfirma  = $_POST['senha_confirma'];
 
          	if($name == "" || $address == "" || $pnumber == "" || $rg == "" || $cpf == "" || $email == "" || $user == "" || $pass == ""){
          		echo "Todos os campos devem ser preenchidos. Um ou varios campos estao vazios.";
          		echo "<br/>";
          		echo "<a href='registerProprietario.php'>Voltar</a>";
-         	} else {
+         	} else if($pass != $senhaConfirma){
+            echo "<span class='erro'><b>Erro</b>: As senhas não conferem!</span>";
+            echo "<br/>";
+            echo "<a href='registerProprietario.php'>Voltar</a>";
+          }
+          else {
          		mysqli_query($mysqli, "INSERT INTO proprietario(nome, endereco , telefone , rg, cpf, email, username, senha) VALUES('$name', '$address', '$pnumber', '$rg', '$cpf', '$email', '$user', md5('$pass'))")
          			or die("Could not execute the insert query.");
 
@@ -52,15 +58,15 @@
                      </div>
                      <div class="form-group">
                         <label for="inputName">Telefone</label>
-                        <input type="text" class="form-control" name="pnumber" placeholder="ex: 982457414">
+                        <input type="text" class="form-control" name="pnumber" placeholder="ex: 982457414" maxlength="11" >
                      </div>
                      <div class="form-group">
                         <label for="inputName">RG</label>
-                        <input type="text" class="form-control" name="rg" placeholder="ex: 5545333">
+                        <input type="text" class="form-control" name="rg" placeholder="ex: 5545333" maxlength="7">
                      </div>
                      <div class="form-group">
                         <label for="inputName">C.P.F</label>
-                        <input type="text" class="form-control" name="cpf" placeholder="ex: 01247454522">
+                        <input type="text" class="form-control" name="cpf" placeholder="ex: 01247454522" maxlength="11">
                      </div>
                      <div class="form-group">
                         <label for="inputEmail3">Email</label>
@@ -72,7 +78,12 @@
                      </div>
                      <div class="form-group">
                         <label for="inputVerify3">Senha</label>
-                        <input type="password" class="form-control" name="password" placeholder=" ****** " required="">
+                        <input type="password" class="form-control" id="password" name="password" placeholder=" ****** " required="">
+                        <label for="inputVerify3">Confirme a senha</label>
+                        <input type="password" class="form-control" id="senha_confirma" name="senha_confirma"  placeholder="Confirme sua senha" />
+
+
+
                      </div>
                      <div class="form-group">
                         <button type="submit" name="submit" value="Submit" class="btn btn-success btn-lg float-right">Register</button>

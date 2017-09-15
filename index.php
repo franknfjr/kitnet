@@ -103,7 +103,7 @@
            </div>
         </div>
         <footer class="footer">
-           <p>&copy; Company 2017  | Codigo fonte <a href="http://github.com/franknfjr/kitnet" title="Github">Github</a></p>
+           <p>&copy; Company 2017  | Código Fonte <a href="http://github.com/franknfjr/kitnet" target="_blank" title="Github">Github</a></p>
         </footer>
      </div>
 </body>
