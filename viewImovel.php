@@ -11,30 +11,26 @@ if(!isset($_SESSION['valid'])) {
 include_once("connection.php");
 
 //verifica a página atual caso seja informada na URL, senão atribui como 1ª página
-$pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1;
-
-//fetching data in descending order (lastest entry first)
-$result = mysqli_query($mysqli, "SELECT * FROM imovel WHERE proprietario_id=".$_SESSION['id']." ORDER BY id DESC");
-
-//seleciona todos os itens da tabela
-$res = mysqli_query($result);
-
-//conta o total de itens
-$total = mysqli_num_rows($res);
+$pagina = filter_input(INPUT_GET, 'pagina', FILTER_VALIDATE_INT);
 
 //seta a quantidade de itens por página, neste caso, 2 itens
 $registros = 2;
 
-//calcula o número de páginas arredondando o resultado para cima
-$numPaginas = ceil($total/$registros);
-
 //variavel para calcular o início da visualização com base na página atual
-$inicio = ($registros*$pagina)-$registros;
+$inicio = ($registros*$pagina);
 
+
+//conta o total de itens
+$resultTotal = mysqli_query($mysqli, "SELECT count(id) FROM imovel where proprietario_id=".$_SESSION['id']);
+
+$total = mysqli_fetch_all($resultTotal);
 //seleciona os itens por página
 $result = mysqli_query($mysqli, "SELECT * FROM imovel WHERE proprietario_id=".$_SESSION['id']." ORDER BY id DESC LIMIT $inicio, $registros");
-$res = mysqli_query($result);
-$total = mysqli_num_rows($res);
+
+//calcula o número de páginas arredondando o resultado para cima
+$numPaginas = ceil($total[0][0]/$registros);
+
+
 
 ?>
 <!DOCTYPE html>
@@ -106,12 +102,27 @@ $total = mysqli_num_rows($res);
 		</tr>
   </tbody>
 </table>
-<?php
-//exibe a paginação
-for($i = 1; $i < $numPaginas+1; $i++) {
-  echo "<a href='viewImovel.php?pagina=$i'>".$i."</a> ";
-}
-?>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="viewImovel.php?pagina=0">Anterior</a></li>
+                                    <?php
+                                        for($i = 0; $i < $numPaginas; $i++) {
+                                            $estilo = '';
+
+                                            if($pagina == $i){
+
+                                              $estilo = "active";
+                                            }
+
+                                         ?>
+                                            <li class="page-item <?php echo $estilo?>"><a href="viewImovel.php?pagina=<?php echo $i?>"><?php echo $i + 1?> </a> </li>
+                                            <?php
+                                        }
+                                    ?>
+
+                                    <li class="page-item"><a class="page-link" href="viewImovel.php?pagina=<?php echo $pagina+1?>">Próxima</a></li>
+                                </ul>
+                            </nav>
 </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
