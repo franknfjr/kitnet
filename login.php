@@ -17,20 +17,29 @@
                  $result = mysqli_query($mysqli, "SELECT * FROM proprietario WHERE username='$user' AND senha=md5('$pass')")
                  or die("Could not execute the select query.");
 
+                 $resultCliente = mysqli_query($mysqli, "SELECT * FROM cliente WHERE username='$user' AND senha=md5('$pass')")
+                 or die("Could not execute the select query.");
+
                  $row = mysqli_fetch_assoc($result);
+                 $rowCliente = mysqli_fetch_assoc($resultCliente);
 
                  if(is_array($row) && !empty($row)) {
                          $validuser = $row['username'];
                          $_SESSION['valid'] = $validuser;
                          $_SESSION['nome'] = $row['nome'];
                          $_SESSION['id'] = $row['id'];
-                 } else {
+                 } else if(is_array($rowCliente) && !empty($rowCliente)){
+                         $validuser = $rowCliente['username'];
+                         $_SESSION['validCliente'] = $validuser;
+                         $_SESSION['nome'] = $rowCliente['nome'];
+                         $_SESSION['id'] = $rowCliente['id'];
+                 }else {
                      echo "Usuario ou senha invalidos.";
                      echo "<br/>";
                      echo "<a href='login.php'>Voltar</a>";
                  }
 
-                 if(isset($_SESSION['valid'])){
+                 if(isset($_SESSION['valid']) || isset($_SESSION['validCliente'])){
                      header('Location: index.php');
                  }
              }
@@ -60,6 +69,13 @@
                <!--/card-block-->
             </div>
             <!-- /form card login -->
+            <div>
+              <ul>
+                <br>
+                <li class="float-left"><a href="registerProprietario.php">Registre-se para ganhar dinheiro alugando um imóvel</a></li><br>
+                <li class="float-left"><a href="registerCliente.php">Registre-se para alugar um imóvel</a></li>
+              </ul>
+            </div>
          </div>
       </div>
       </div>

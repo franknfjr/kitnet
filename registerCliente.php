@@ -21,7 +21,7 @@
          	if($name == "" || $address == "" || $pnumber == "" || $rg == "" || $cpf == "" || $email == "" || $user == "" || $pass == ""){
          		echo "Todos os campos devem ser preenchidos. Um ou varios campos estao vazios.";
          		echo "<br/>";
-         		echo "<a href='registercliente.php'>Voltar</a>";
+         		echo "<a href='registerCliente.php'>Voltar</a>";
          	} else {
          		mysqli_query($mysqli, "INSERT INTO cliente(nome, endereco , telefone , rg, cpf, email, username, senha) VALUES('$name', '$address', '$pnumber', '$rg', '$cpf', '$email', '$user', md5('$pass'))")
          			or die("Could not execute the insert query.");

@@ -13,7 +13,7 @@
 
    //excluindo a linha da tabela
    $result=mysqli_query($mysqli, "DELETE FROM cliente WHERE id=$id");
-   $result=mysqli_query($mysqli, "DELETE FROM imovel WHERE cliente_id=$id");
+
 
    //redirecionando para a página de exibição (view.php no nosso caso
    header("Location:logout.php");

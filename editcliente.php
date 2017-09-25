@@ -1,7 +1,9 @@
 <?php session_start(); ?>
 <?php
-   if(!isset($_SESSION['valid'])) {
-   	header('Location: login.php');
+   if(!isset($_SESSION['validCliente'])) {
+    header('Location: login.php');
+   }else if(isset($_SESSION['valid'])){
+     header('Location: login.php');
    }
    ?>
 <?php
@@ -48,27 +50,27 @@
            }
        }else {
    		//updating the table
-   		$result = mysqli_query($mysqli, "UPDATE cliente SET nome='$nome', endereco='$endereco', telefone='$telefone', rg='$rg', cpf='$cpf', email='$email', username='$username', senha=md5('$senha') WHERE id=$id");
+   		$resultCliente = mysqli_query($mysqli, "UPDATE cliente SET nome='$nome', endereco='$endereco', telefone='$telefone', rg='$rg', cpf='$cpf', email='$email', username='$username', senha=md5('$senha') WHERE id=$id");
 
    		//redirectig to the display page. In our case, it is view.php
-   		header("Location: viewcliente.php");
+   		header("Location: index.php");
    	}
    }
    ?>
 <?php
    $id = $_GET['id'];
    //selecting data associated with this particular id
-   $result = mysqli_query($mysqli, "SELECT * FROM cliente WHERE id=$id");
+   $resultCliente = mysqli_query($mysqli, "SELECT * FROM cliente WHERE id=$id");
 
-   while($res = mysqli_fetch_array($result)) {
-       $nome = $res['nome'];
-       $endereco = $res['endereco'];
-       $telefone = $res['telefone'];
-       $rg = $res['rg'];
-       $cpf = $res['cpf'];
-       $email = $res['email'];
-       $username = $res['username'];
-       $senha = $res['senha'];
+   while($result = mysqli_fetch_array($resultCliente)) {
+       $nome = $result['nome'];
+       $endereco = $result['endereco'];
+       $telefone = $result['telefone'];
+       $rg = $result['rg'];
+       $cpf = $result['cpf'];
+       $email = $result['email'];
+       $username = $result['username'];
+       $senha = $result['senha'];
 
    }
    ?>
@@ -95,10 +97,7 @@
                   <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="add.html">Add Imovel</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="viewcliente.php">Ajustes</a>
+                  <a class="nav-link" href="#">Aluguel</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="logout.php">Logout</a>
